@@ -1,65 +1,64 @@
 $(document).ready(function(){
-var form = $("#form");
-//the upper limit for the number
-var numLimit = 1000000000000;
-//the final text result of the number
-var numText = "";
-//dictionaries that stores basic numeric values
-var ones = {
-0: "zero",
-1: "one",
-2: "two",
-3: "three",
-4: "four",
-5: "five",
-6: "six",
-7: "seven",
-8: "eight",
-9: "nine"
+  var form = $("#form");
+  //the limit that the user can put
+  var numLimit = 1000000000000;
+  var numText = "";
+  //dictionaries that stores basic numeric values
+  var ones = {
+  0: "zero",
+  1: "one",
+  2: "two",
+  3: "three",
+  4: "four",
+  5: "five",
+  6: "six",
+  7: "seven",
+  8: "eight",
+  9: "nine"
 }
 var tens = {
 
-10: "ten",
-11: "eleven",
-12: "twelve",
-13: "thirteen",
-14: "fourteen",
-15: "fifteen",
-16: "sixteen",
-17: "seventeen",
-18: "eighteen",
-19: "nineteen"
+  10: "ten",
+  11: "eleven",
+  12: "twelve",
+  13: "thirteen",
+  14: "fourteen",
+  15: "fifteen",
+  16: "sixteen",
+  17: "seventeen",
+  18: "eighteen",
+  19: "nineteen"
 }
 var prefixes = {
-2: "twenty",
-3: "thirty",
-4: "forty",
-5: "fifty",
-6: "sixty",
-7: "seventy",
-8: "eighty",
-9: "ninety"
+  2: "twenty",
+  3: "thirty",
+  4: "forty",
+  5: "fifty",
+  6: "sixty",
+  7: "seventy",
+  8: "eighty",
+  9: "ninety"
 }
 var suffixes = {
-1: "",
-2: "thousand ",
-3: "million ",
-4: "billion ",
-5: "trillion"
+  1: "",
+  2: "thousand ",
+  3: "million ",
+  4: "billion ",
+  5: "trillion"
 }
-//when the user submits the form, do what is
-//in the function
+
+//the function that allows the user to submite
 form.submit(function(e){
-//prevents the auto-submission of the form
-e.preventDefault();
-//reset numText
-numText = "";
-//get the value of the number the user submits
-var num = $("#numInput").val();
-//get the final text representation of the number
-var finalNumText = convertNum(num);
-//put this number on the page
-$("#changedNum").html("Converted Number: " + finalNumText);
+//prevents the auto-submission o
+  e.preventDefault();
+  //reset numText
+  numText = "";
+  //get the value of the number that the user submits (input)
+  var num = $("#numInput").val();
+  //get the final text representation of the number
+  var finalNumText = convertNum(num);
+  //put this number on the page (output according to the variables)
+  $("#changedNum").html("Converted Number: " + finalNumText);
 });
 
 /**
@@ -68,22 +67,22 @@ $("#changedNum").html("Converted Number: " + finalNumText);
 * @returns The text representation of num
 */
 function convertNum(num){
-var absNum = Math.abs(num);
-//test whether the number is in ones
-try {
-//if num is bigger than the limit, throw error
-if(num > numLimit){
-throw "Number is too big. It must be below or equal to " + numLimit
+  var absNum = Math.abs(num);
+  //test whether the number is in ones
+  try {
+    //if num is bigger than the limit, throw error
+    if(num > numLimit){
+    throw "Number is too big. It must be below or equal to " + numLimit
 + " (1 Trillion)";
-}
-}
-catch(err){
-alert(err);
-return "ERROR";
-}
+      }
+  }
+  catch(err){
+      alert(err);
+      return "ERROR";
+  }
 //check whether num is negative
 if(num.toString().includes("-") && absNum != 0){
-numText += "negative "
+    numText += "negative "
 }
 
 //if the absolute value of num is in ones
